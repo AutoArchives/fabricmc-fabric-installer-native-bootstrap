@@ -33,6 +33,13 @@ _Use_decl_annotations_ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevI
 
 	logger.log(L"Fabric launcher native bootstrap log:");
 
+	try {
+		systemHelper.refreshEnvironment();
+	} catch (const std::runtime_error& error) {
+		logger.log(L"refreshEnvironment failed:");
+		logger.log(error.what());
+	}
+
 	auto bs = Bootstrap(systemHelper, logger);
 
 	try {
